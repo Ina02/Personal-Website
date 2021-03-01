@@ -13,9 +13,16 @@ $(window).on("load",function() {
 })
 
 
-
-
 $(document).ready(function() {
+	var hash = window.location.hash;
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  $('.nav-item a').click(function (e) {
+    $(this).tab('show');
+    var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+    window.location.hash = this.hash;
+    $('html,body').scrollTop(scrollmem);
+  });
 
 	$('#slides').superslides({
 		animation: 'fade',
@@ -24,30 +31,13 @@ $(document).ready(function() {
 	});
 
 	var typed = new Typed(".typed",{
-		strings: ["Product Engineer","Cosmophilic","Learner For Life"],
+		strings: ["Product Engineer","Cosmophilic","Lifelong Learner","Aspiring Minimalist"],
 		typeSpeed: 70,
 		loop: true,
 		startDelay: 1000,
 		showCursor: false
 	});
-	$('.owl-carousel').owlCarousel({
-		loop:true,
-		items: 4,
-		responsive:{
-			0:{
-				items:1
-			},
-			480:{
-				items:2
-			},
-			768:{
-				items:3
-			},
-			938:{
-				items:4
-			}
-		}
-	});
+	
 
 	const options = {
 		bottom: '32px', // default: '32px'
@@ -67,32 +57,7 @@ $(document).ready(function() {
 	  darkmode.showWidget();
 	
 	
-	var skillsTopOffset = $(".skillsSection").offset().top;
-	var statsTopOffset = $(".statsSection").offset().top;
-	var countUpFinished = false; 
-	$(window).scroll(function(){
-		if(window.pageYOffset > skillsTopOffset - $(window).height() + 200){
-			$('.chart').easyPieChart({
-				easing: 'easeInOut',
-				barColor: '#fff',
-				trackColor: false,
-				scaleColor: false,
-				lineWidth: 4,
-				size: 152,
-				onStep: function(from, to, percent){
-					$(this.el).find('.percent').text(Math.round(percent));
-				}
-			});
-		}
-		if(!countUpFinished && window.pageYOffset > statsTopOffset - $(window).height() + 200) {
-			$(".counter").each(function(){
-				var element = $(this);
-				var endVal = parseInt(element.text());
-				element.countup(endVal);
-			})
-			countUpFinished = true;
-		}
-	});
+	
 
 	$("[data-fancybox]").fancybox();
 	
@@ -122,11 +87,6 @@ $(document).ready(function() {
 	});
 
 
-
-
-
-
-
 	const nav = $("#navigation");
 	const navTop = nav.offset().top;
 
@@ -145,5 +105,9 @@ $(document).ready(function() {
 		}
 
 	}
+	
 });
+particlesJS.load('particles-js', 'js/particles.json', function() {
+	console.log('callback - particles.js config loaded');
+  });
 
