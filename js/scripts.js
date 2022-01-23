@@ -5,7 +5,7 @@ $('#slides').superslides({
 });
 
 var typed = new Typed(".typed",{
-    strings: ["Product Engineer","Cosmophilic","Lifelong Learner","Aspiring Minimalist"],
+    strings: ["Product Engineer","Cosmophilic","Lifelong Learner","Aspiring Minimalist","Massive Overthinker"],
     typeSpeed: 70,
     loop: true,
     startDelay: 1000,
